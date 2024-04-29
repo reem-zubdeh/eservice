@@ -1,0 +1,27 @@
+[
+    {
+        "id" : "cleaning",
+        "name" : "Cleaning",
+        "image" : "category_cleaning.jpg"
+    }, 
+    {
+        "id" : "mechanic",
+        "name" : "Mechanic",
+        "image" : "category_mechanic.jpg"
+    },
+    {
+        "id" : "transportation",
+        "name" : "Transportation",
+        "image" : "category_transportation.jpg"
+    },
+    {
+        "id" : "moving",
+        "name" : "Moving Day",
+        "image" : "category_moving.jpg"
+    },
+    {
+        "id" : "misc",
+        "name" : "Miscellaneous",
+        "image" : "category_misc.jpg"
+    }
+]

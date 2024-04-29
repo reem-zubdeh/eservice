@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Employee</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/bootstrap-5.1.3/bootstrap.min.css">
+  <link rel="stylesheet" href="vendor/fontawesome-6.0.0/css/fontawesome.min.css">
+  <link rel="stylesheet" href="vendor/fontawesome-6.0.0/css/solid.min.css">
+  <link rel="stylesheet" href="vendor/fontawesome-6.0.0/css/brands.min.css">
+  <link rel="stylesheet" href="vendor/css/style.css">
+
+  <!-- Main CSS File -->
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .button {
+      background-color: #04AA6D;
+      /* Green */
+      border: none;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+      .button2 {
+      background-color: red;
+      /* Green */
+      border: none;
+      color: white;
+      padding: 7px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    .button1 {
+      border-radius: 2px;
+    }
+
+    .button7 {
+      border-radius: 4px;
+    }
+
+    .button3 {
+      border-radius: 8px;
+    }
+
+    .button4 {
+      border-radius: 12px;
+    }
+
+    .button5 {
+      border-radius: 50%;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+
+
+  <div class="wrapper">
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+        <span class="navbar-brand logo" href="#">
+            <img src="img/logo.png" alt="logo">
+            <span>eService</span>
+        </span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav">
+            <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/homepage">My Homepage</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/chat">Chat</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Log out</a>
+            </li>
+            </ul>
+            <div class="d-flex">
+            <input class="form-control me-2" id="search" placeholder="e.g. transportation...">
+            <button onclick="search()" class="btn btn-outline-light">Search</button>
+            <script>
+                document.getElementById("search").addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {  
+                        search();
+                    }
+                });
+                function search() {
+                    let query = document.getElementById("search").value.trim();
+                    if (query == "") return;
+                    query = query.replaceAll(' ', '-');
+                    location.href = `/browse-category?q=${query}`;
+                }
+            </script>
+            </div>
+        </div>
+        </div>
+    </nav>
+
+    <!-- End Header -->
+
+    <!-- ======= Sidebar ======= -->
+    <!-- <aside id="sidebar" class="sidebar">
+    <img src="blank-profile-picture-973460_640.png" alt="Italian Trulli">
+   
+
+  </aside> -->
+    <!-- End Sidebar-->
+    <div class="content container">
+      <main id="main" class="main">
+
+        <div class="pagetitle">
+          <h1>Employee</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">Home</a></li>
+              <li class="breadcrumb-item active">Employee</li>
+            </ol>
+          </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section dashboard">
+          <div class="row">
+
+            <!-- Left side columns -->
+            <div class="col-lg-8">
+              <div class="row">
+
+                <!-- Tasks done by employee -->
+                <div class="col-xxl-4 col-md-6">
+                  <div class="card info-card sales-card">
+
+
+                    <div class="card-body">
+                      <h5 class="card-title">Tasks Done <span>| Month</span></h5>
+
+                      <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                          <i class="bi bi-cart"></i>
+                        </div>
+                        <div class="ps-3">
+                          
+                                <div class="ps-3">
+                                  <h6> <%= tasks.count %> Tasks </h6>
+                                 
+                                
+                                </div>
+                              
+                                <!-- <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase from last month</span> -->
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div><!-- End of tasks -->
+
+                <!-- Revenue Card -->
+                <div class="col-xxl-4 col-md-6">
+                  <div class="card info-card revenue-card">
+
+                    <div class="card-body">
+                      <h5 class="card-title">Add an new service<span>| Get your money cash</span></h5>
+                      
+
+                      <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                          <i class="bi bi-currency-dollar"></i>
+                        </div>
+                        <div class="ps-3">
+                          <!-- <h6> $ <%= revenue.rev %></h6> -->
+                          <h5 class="card-title"><a href="/new-service">Add a Service Now! </a></h5>
+                         
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div><!-- End Revenue -->
+
+                <!-- Customers  -->
+                <div class="col-xxl-4 col-xl-12">
+
+                  <div class="card info-card customers-card">
+
+
+
+                    <div class="card-body">
+                      <h5 class="card-title">My time Slots<span>| This week</span></h5>
+
+                      <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                          <i class="bi bi-people"></i>
+                        </div>
+                        <div class="ps-3">
+                          <form action="/addSlot" method="POST">
+                            <h6><button type="submit" class="button button5 badge bg-danger">Click</button></h6>
+                          </form>
+                          <!-- <h6><button type="submit" class="button button5 badge bg-danger">Click</button></h6> -->
+<!-- <h5 class="card-title"><a href="/new-service">Add a Service Now! </a></h5> -->
+                          <!-- <span class="text-danger small pt-1 fw-bold">10</span> <span
+                            class="text-muted small pt-2 ps-1">Slots</span> -->
+
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div><!-- End Customers-->
+
+                <!-- orders -->
+                <div class="col-12">
+                  <div class="card recent-sales overflow-auto">
+
+
+                    <div class="card-body">
+                      <h5 class="card-title">Orders </h5>
+
+                      <table class="table table-borderless">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Status</th>
+                            
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% appointments.forEach(app=> { %>
+                            <tr>
+                              <th scope="row"><a href="#">
+                                  <%= app.booking_id%>
+                                </a></th>
+
+                              <td><a href="#" class="text-primary">
+                                  <%= app.customer_id%>
+                                </a></td>
+                              <td>
+                                <%= app.service_id%>
+                              </td>
+                              <td>$50</td>
+                              <% if (app.status==1) { %>
+                                <td><span class="badge bg-warning">Pending</span></td>
+                                <% } %>
+                                  <% if (app.status==2) { %>
+                                    <td><span class="badge bg-success">Approved</span></td>
+                                    <% } %>
+
+                                      <% if (app.status==0) { %>
+                                        <td><span class="badge bg-danger">Rejected</span></td>
+                                        <% } %>
+                                        <% if (app.status==4) { %>
+                                          <td><span class="badge bg-success">Done</span></td>
+                                          <% } %>
+
+
+                                       
+                                          <!-- <select>
+                                                                                   -->
+                                         
+                                    
+<td>
+  <form action="/reject" method="POST">
+    <input name="bid" id="bid" type="hidden" value=<%=app.booking_id %>>
+    <input name="sid" id="sid" type="hidden" value=<%=app.service_id %>>
+  <button type="submit" span  class="badge bg-danger" id=myform >Reject</button>
+  </form>
+</td>
+<td>
+  <form action="/accept" method="POST">
+ 
+    <input name="sid" id="sid" type="hidden" value=<%=app.service_id %>>
+    <button type="submit" span class="badge bg-success" id=myform>Accept</button>
+  </form>
+</td>
+<td>
+  <form action="/done" method="POST">
+
+    <input name="sid" id="sid" type="hidden" value=<%=app.service_id %>>
+    <button type="submit" span class="badge bg-warning" id=myform>Done</button>
+  </form>
+</td>
+
+
+                                          <!-- <td><span class="badge bg-warning">Pending</span></td> -->
+                            </tr>
+
+
+
+                        </tbody>
+                        <% }) %>
+                      </table>
+
+                    </div>
+
+                  </div>
+                </div><!-- order -->
+
+                <!-- Top Selling -->
+                <!-- End Top Selling -->
+
+              </div>
+            </div><!-- End Left side columns -->
+
+            <!-- Right side columns -->
+            <div class="col-lg-4">
+              <div class="card">
+
+
+                <div class="card-body">
+                  <h5 class="card-title">rating</h5>
+                  Stars rating 
+                    <%= rate.r %>
+                  <form action="/list2" method="POST">
+                    <button type="submit" class="button button4 badge bg-success">Click to write feedback </br>on ended
+                      services</button>
+                  </form>
+                  <h5 class="card-title">Comments</h5>
+                  <% feedback.forEach(feedback=> { %>
+
+                    <div class="activity">
+
+                      <div class="activity-item d-flex">
+                        <div class="activite-label">
+                          <!-- <%=feedback.name%> -->
+                        </div>
+                        <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                        <div class="activity-content">
+                          <a href="#" class="fw-bold text-dark">
+                            <%=feedback.description%>
+                          </a>
+                        </div>
+                      </div><!-- End activity item-->
+                      <% }) %>
+
+        </section>
+
+      </main><!-- End #main -->
+    </div>
+    <!-- ======= Footer ======= -->
+
+    <footer class="bg-light">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-md-3 d-flex justify-content-center">
+            <h2 class="d-inline m-2"><a href=""><i class="fa-brands fa-facebook"></i></a></h2>
+            <h2 class="d-inline m-2"><a href=""><i class="fa-brands fa-instagram"></i></a></h2>
+            <h2 class="d-inline m-2"><a href=""><i class="fa-brands fa-linkedin"></i></a></h2>
+          </div>
+          <div class="col-md-6 d-flex justify-content-center align-items-center text-muted">
+            <h6>Contact Us</h6>
+            <ul class="list-unstyled px-4">
+              <li><i class="fa-solid fa-phone"></i>&ThickSpace; 123 456 789</li>
+              <li><i class="fa-solid fa-envelope"></i>&ThickSpace; email@example.com</li>
+            </ul>
+          </div>
+          <div class="col-md-3 d-flex justify-content-center">
+            <span class="text-muted"><i class="fa-solid fa-copyright"></i>&ThickSpace; Copyright 2022</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+  </div>
+  <!-- End Footer -->
+
+  <script src="vendor/bootstrap-5.1.3/bootstrap.bundle.min.js"></script>
+  <script src="main.js"></script>
+
+  <script>
+
+    function startChat(contact) {
+        let message = {
+            to: contact,
+            msgbody: ""
+        }
+        let xhttp = new XMLHttpRequest();
+        xhttp.onload = () => {
+            location.href = "/chat";
+        };
+        xhttp.open("POST", "/chat");
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhttp.send(JSON.stringify(message));
+    }
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit your profile</title>
+
+    <link rel="stylesheet" href="vendor/bootstrap-5.1.3/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/fontawesome-6.0.0/css/fontawesome.min.css">
+    <link rel="stylesheet" href="vendor/fontawesome-6.0.0/css/solid.min.css">
+    <link rel="stylesheet" href="vendor/fontawesome-6.0.0/css/brands.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="wrapper">
+
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+            <a class="navbar-brand" href="#">Logo - Name</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">Log in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Plans</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About us</a>
+                </li>
+                </ul>
+                <form class="d-flex">
+                <input class="form-control me-2" placeholder="e.g. transportation...">
+                <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
+            </div>
+        </nav>
+
+
+        <div class="content container">
+            <h1>Edit your profile</h1>
+
+            <div class="row">
+                <form class="col-12 col-md-9">
+                
+                <div class="row my-4 gx-3 gy-4">
+                    <div class="col-md-6">
+                    <div class="form-floating">
+                        <input class="form-control" name="firstname" id="firstname" type="text" placeholder="John" value="John" required>
+                        <label for="firstname">First name</span>
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                    <div class="form-floating">
+                        <input class="form-control" name="lastname" id="lastname" type="text" placeholder="Smith" value="Smith" required>
+                        <label for="lastname">Last name</span>
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                    <div class="form-floating">
+                        <input class="form-control" name="phone" id="phone" type="tel" placeholder="12 345 678" value="12 345 678" required>
+                        <label for="email">Phone number</label>
+                    </div>
+                    </div>
+                    <div class="col-12">
+                        <label class="me-5" for="photo">Upload photo</label>
+                        <input class="form-control-file" name="photo" id="photo" type="file" accept="image/*" required>
+                    </div>
+                    <div class="col-md-2 align-self-center">
+                        <span>Location</span>
+                    </div>
+                    <div class="col-md-5">
+                    <div class="form-floating">
+                        <input class="form-control" name="country" id="country" type="text" placeholder="Lebanon" value="Lebanon" required>
+                        <label for="country">Country</span>
+                    </div>
+                    </div>
+                    <div class="col-md-5">
+                    <div class="form-floating">
+                        <input class="form-control" name="city" id="city" type="text" placeholder="Beirut" value="Beirut" required>
+                        <label for="city">City/State</span>
+                    </div>
+                    </div>
+                    <div class="col-12">
+                        <label class="me-5" for="id">Upload your ID (PDF)</label>
+                        <input class="form-control-file" name="id" id="id" type="file" accept="application/pdf" required>
+                    </div>
+                    <div class="col-12">
+                        <label class="me-5" for="police">Upload your police record (PDF)</label>
+                        <input class="form-control-file" name="police" id="police" type="file" accept="application/pdf" required>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-secondary my-5 me-3">Cancel</button>
+                <button type="submit" class="btn btn-primary my-5">Save changes</button>
+                
+                </form>
+            </div>
+        </div>
+
+        <footer class="bg-light">
+            <div class="container">
+                <div class="row align-items-center g-4">
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <h2 class="d-inline m-2"><a href=""><i class="fa-brands fa-facebook"></i></a></h2>
+                        <h2 class="d-inline m-2"><a href=""><i class="fa-brands fa-instagram"></i></a></h2>
+                        <h2 class="d-inline m-2"><a href=""><i class="fa-brands fa-linkedin"></i></a></h2>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-center align-items-center text-muted">
+                        <h6>Contact Us</h6>
+                        <ul class="list-unstyled px-4">
+                            <li><i class="fa-solid fa-phone"></i>&ThickSpace; 123 456 789</li>
+                            <li><i class="fa-solid fa-envelope"></i>&ThickSpace; email@example.com</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <span class="text-muted"><i class="fa-solid fa-copyright"></i>&ThickSpace; Copyright 2022</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="vendor/bootstrap-5.1.3/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+
+    <link rel="stylesheet" href="vendor/bootstrap-5.1.3/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/fontawesome-6.0.0/css/fontawesome.min.css">
+    <link rel="stylesheet" href="vendor/fontawesome-6.0.0/css/solid.min.css">
+    <link rel="stylesheet" href="vendor/fontawesome-6.0.0/css/brands.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="wrapper">
+
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+            <span class="navbar-brand logo" href="#">
+                <img src="img/logo.png" alt="logo">
+                <span>eService</span>
+            </span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <% if (!user) { %>
+                        <a class="nav-link" href="/login">Log in</a>
+                    <% } else { %>
+                        <a class="nav-link" href="/homepage">My Homepage</a>
+                    <% }%>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/about">About us</a>
+                </li>
+                <% if (user) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/chat">Chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Log out</a>
+                    </li>
+                <% } %>
+                </ul>
+                <div class="d-flex">
+                <input class="form-control me-2" id="search" placeholder="e.g. transportation...">
+                <button onclick="search()" class="btn btn-outline-light">Search</button>
+                <script>
+                    document.getElementById("search").addEventListener("keydown", function (e) {
+                        if (e.key === "Enter") {  
+                            search();
+                        }
+                    });
+                    function search() {
+                        let query = document.getElementById("search").value.trim();
+                        if (query == "") return;
+                        query = query.replaceAll(' ', '-');
+                        location.href = `/browse-category?q=${query}`;
+                    }
+                </script>
+                </div>
+            </div>
+            </div>
+        </nav>
+
+        <div class="content container">
+
+            <h1 class="fw-bold">About us</h1>
+            <h4 class="mb-5 text-muted">Get informed about eService.</h4>
+
+            <p>eService is a platform that aims to allow workers the opportunity of finding small jobs, as well as provide customers with quality services at affordable prices. At eService, your satisfaction and experience is our top priority, whether you are a customer, employee, or just looking around or getting started.</p>
+
+            <p>Get informed on this page with the most important information you need to know about eService. If you have any other questions, we are happy to offer our support if you contact us at <strong>eservice@example.com</strong> or at <strong>123 456 789</strong>.</p>
+
+            <h2 class=" my-4">Frequently asked questions</h2>
+
+            <div class="accordion" id="accordion">
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question1">
+                        How do I find the right service for me?
+                    </button>
+                  </h2>
+                  <div id="question1" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                    <div class="accordion-body">
+                        <p>You have come to the right place!</p>
+                        <p>You may browse all our services <a href="/browse-category" class="text-decoration-none">here</a>.</p>
+                        <p>Each service posted on the website belongs to a particular <strong>category</strong> (cleaning, plumbing, etc.). To look at services within a particular category, visit our <a href="/category" class="text-decoration-none">categories page</a> and find the category that most suits your needs. Click on the appropriate category to be taken to all the service listings belonging to that category.</p>
+                        <p>For more specific services, from anywhere on the website, you may use the <strong>search</strong> field present in the navigation bar at the top of the page to search eService for the service you would like using the appropriate keywords.</p>
+                        <p></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question2">
+                          I've found the service I want. How do I book it?
+                      </button>
+                    </h2>
+                    <div id="question2" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                      <div class="accordion-body">
+                        <p>If you do not have a <strong>customer</strong> account, create one <a href="/signup-customer" class="text-decoration-none">here</a>.</p>
+                        <p>Any service you find listed will have two buttons near the name of its employee: <strong>Chat</strong> and <strong>Book</strong>. To book the service, make sure you are <a href="/login" class="text-decoration-none">logged in</a>, then simply click on the Book button to view that employee's available timeslots. Note that the Book button may be disabled/grayed out if the employee currently has no booking availability.</p>
+                        <p>We highly encourage you to communicate with our employees using our secure <strong>Chat</strong> system in case you would like to book a service with them. You may ask about further availability times, location of the service, and simply clear up any misconceptions.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question3">
+                        How do I post a service to eService?
+                    </button>
+                  </h2>
+                  <div id="question3" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                    <div class="accordion-body">
+                        <p>If you do not have an <strong>employee</strong> account, create one <a href="/signup-employee" class="text-decoration-none">here</a>.</p>
+                        <p>Start by <a href="/login" class="text-decoration-none">logging in</a> to your eService employee account, and visit your employee homepage by clicking on <strong>"My Homepage"</strong> in the navigation bar at the top of the page.</p>
+                        <p>On your homepage, click on <strong>"Add a Service Now!"</strong> to be taken to the New Service page, where you can provide information about the service you are willing to offer. Add the category, hourly rate, description, and some <strong>tags</strong> (we encourage you to use meaningful tags to help your customers find your services easier — find some examples on the <a href="/browse-category" class="text-decoration-none">browsing page</a>).</p>
+                        <p>Once you have put in all the information you would like to provide about your service, click on Submit, and you will be ready to go! Your service will now be publicly visible to customers, as well as any visitor who searches the website. Registered eService customers may now chat with you about this service or ask to book it (if you have available timeslots open).</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question4">
+                        Can I use eService on my phone?
+                    </button>
+                </h2>
+                <div id="question4" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                    <div class="accordion-body">
+                        <p>Yes! You can use eService on any smart device that connects to the internet through a browser.</p>
+                        <p>We currently don't offer a mobile application (specifically for iOS or Android), but webpages on eServices are designed to be lightweight, efficient, and responsive to different screen sizes for the best user experience.</p>
+                    </div>
+                </div>
+                </div>
+
+                <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question5">
+                        I liked/disliked one of the services I have provided/booked. Where can I give my feedback?
+                    </button>
+                </h2>
+                <div id="question5" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                    <div class="accordion-body">
+                        <p>We hope we were satisfied with your service! We're sorry if you have encountered a customer or employee who had poor behavior.</p>
+                        <p>In any case, we highly encourage you to provide <strong>feedback</strong> about any service you consume or provide. You can do this by first visiting your <strong>homepage</strong> (when you are logged in), and then visiting the <strong>feedback</strong> page.This helps others like you on eService and makes you more likely to have better services in the future.</p>
+                        <p>You may give a customer or employee that you have recently booked with a star rating (out of 5) as well as a written review as feedback. This customer or employee's overall star rating will change with feedback like yours.</p>
+                    </div>
+                </div>
+                </div>
+
+              </div>
+
+        </div>
+
+        <footer class="bg-light">
+            <div class="container">
+                <div class="row align-items-center g-4">
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <h2 class="d-inline m-2"><a href=""><i class="fa-brands fa-facebook"></i></a></h2>
+                        <h2 class="d-inline m-2"><a href=""><i class="fa-brands fa-instagram"></i></a></h2>
+                        <h2 class="d-inline m-2"><a href=""><i class="fa-brands fa-linkedin"></i></a></h2>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-center align-items-center text-muted">
+                        <h6>Contact Us</h6>
+                        <ul class="list-unstyled px-4">
+                            <li><i class="fa-solid fa-phone"></i>&ThickSpace; 123 456 789</li>
+                            <li><i class="fa-solid fa-envelope"></i>&ThickSpace; email@example.com</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <span class="text-muted"><i class="fa-solid fa-copyright"></i>&ThickSpace; Copyright 2022</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="vendor/bootstrap-5.1.3/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+    
+</body>
+</html>

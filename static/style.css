@@ -1,0 +1,234 @@
+html, body {
+    height: 100%;
+}
+  
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+  
+.content {
+    flex: 1;
+}
+
+.content.container, .content > .container {
+    padding: 5em 1em;
+}
+
+footer {
+    padding: 2rem; 
+}
+
+.logo {
+    pointer-events: none;
+    user-select: none;
+}
+
+.logo span {
+    vertical-align: middle;
+    font-weight: 650;
+    opacity: 0.75;
+}
+
+.logo img {
+    max-height: 2em;
+}
+
+#landingbanner {
+    background-color: black;
+}
+
+#landingbanner img {
+    height: 20rem;
+    object-fit: cover;
+    opacity: 0.6;
+}
+
+#landingbannertext {
+    width: 70%;
+    position: absolute;
+    bottom: 2rem;
+    right: 15%;
+    text-align: right;
+    color: white;
+    text-shadow: 0 0 0.7em black;
+    user-select: none;
+}
+
+.browsingcategory {
+    display: block;
+    height: 15em;
+    width: 100%;
+    margin: 2em;
+    position: relative;
+    background-color: black;
+    text-align: center;
+}
+
+.browsingcategory img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    transition-duration: 0.5s;
+}
+
+.browsingcategory img:hover {
+    opacity: 0.4;
+}
+
+
+.browsingcategory h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    user-select: none;
+    pointer-events: none;
+}
+
+#categorybanner {
+    position: relative;
+    width: 100%;
+    height: 20em;
+}
+
+#categorybanner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 60%;
+    opacity: 0.8;
+}
+
+#categorybanner div {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(255, 0, 0, 0.075), 65%, white);
+}
+
+#categorybanner h1 {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    color: white;
+    text-shadow: 0 0 0.7em black;
+    font-weight: lighter;
+    font-size: 4em;
+    user-select: none;
+}
+
+.uncheckedstar {
+    color: gray;
+}
+
+.checkedstar {
+    color: orange;
+}
+
+.categorytag a {
+    padding: 0 0.7em 0 0;
+    text-decoration: none;
+}
+
+.servicedescription div {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    column-gap: 1em;
+}
+
+.contacts {
+    box-sizing: border-box;
+    padding: 2em;
+    height: 80vh;
+    overflow: auto;
+}
+
+.contact img {
+    max-width: 20%;
+    border-radius: 100%;
+}
+
+.contact h5 {
+    display: inline-block;
+    padding-left: 5%;
+    margin: 0;
+}
+
+.chatbox {
+    height: 80vh;
+    padding: 0;
+}
+
+.chatbox h3 {
+    height: 10%;
+    margin: 0;
+    padding: 0.5em 1em;
+    border-bottom: 1px solid #c3c3c3;
+}
+
+.messages {
+    height: 80%;
+    padding: 2em 3em;
+    overflow: auto;
+}
+
+.chatbox .send {
+    height: 10%;
+    margin: 0;
+    padding: 0;
+    clear: both;
+}
+
+.chatbox .to, .chatbox .from {
+    max-width: 65%;
+    border-radius: 2em;
+    padding: 1em 1.5em;
+    margin-bottom: 1em;
+    box-sizing: border-box;
+    clear: both;
+}
+
+.chatbox .to span, .chatbox .from span {
+    display: block;
+    opacity: 0.6;
+    font-size: 0.8em;
+    padding-top: 0.4em;
+    float: right;
+}
+
+.chatbox .to {
+    background-color: #e7e7e7;
+    float: left;
+}
+
+.chatbox .from {
+    background-color: #76c8ff;
+    float: right;
+}
+
+.chatbox .send input {
+    width: 90%;
+    padding: 1em;
+    border: 2px solid #a0a0a0;
+    border-radius: 0.2em;
+}
+
+.chatbox .send button {
+    width: 10%;
+    vertical-align: top;
+    padding: 1em 0;
+    background-color: #76c8ff;
+    color: #ffffff;
+    border: 2px solid #a0a0a0;
+    border-radius: 0.2em;
+}
+
+.chatbox .send button:hover {
+    background-color: #4eb8ff;
+}

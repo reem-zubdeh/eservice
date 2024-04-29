@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="vendor/bootstrap-5.1.3/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/fontawesome-6.0.0/css/fontawesome.min.css">
+    <link rel="stylesheet" href="vendor/fontawesome-6.0.0/css/solid.min.css">
+    <link rel="stylesheet" href="vendor/fontawesome-6.0.0/css/brands.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="wrapper">
+
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+            <span class="navbar-brand logo" href="#">
+                <img src="img/logo.png" alt="logo">
+                <span>eService</span>
+            </span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <% if (!user) { %>
+                        <a class="nav-link" href="/login">Log in</a>
+                    <% } else { %>
+                        <a class="nav-link" href="/homepage">My Homepage</a>
+                    <% }%>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About us</a>
+                </li>
+                <% if (user) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/chat">Chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Log out</a>
+                    </li>
+                <% } %>
+                </ul>
+                <div class="d-flex">
+                <input class="form-control me-2" id="search" placeholder="e.g. transportation...">
+                <button onclick="search()" class="btn btn-outline-light">Search</button>
+                <script>
+                    document.getElementById("search").addEventListener("keydown", function (e) {
+                        if (e.key === "Enter") {  
+                            search();
+                        }
+                    });
+                    function search() {
+                        let query = document.getElementById("search").value.trim();
+                        if (query == "") return;
+                        query = query.replaceAll(' ', '-');
+                        location.href = `/browse-category?q=${query}`;
+                    }
+                </script>
+                </div>
+            </div>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div id="categorybanner">
+                <img src="img/categories/<%= image %>">
+                <div></div>
+                <h1><strong><%= name %></strong> services</h1>
+            </div>
+        </div>
+
+        <div class="content container">
+
+            <input type="hidden" id="isSearch" value="<% if (locals.q) { %>true<% } %>">
+            <input type="hidden" id="query" value="<%= (locals.q) ? q : id %>">
+
+            <div id="services">
+
+            </div>
+
+            <button onclick="loadServices()" id="loadMoreButton" class="btn btn-outline-primary d-block mt-5 mx-auto">Load more</button>              
+
+        </div>
+
+        <footer class="bg-light">
+            <div class="container">
+                <div class="row align-items-center g-4">
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <h2 class="d-inline m-2"><a href=""><i class="fa-brands fa-facebook"></i></a></h2>
+                        <h2 class="d-inline m-2"><a href=""><i class="fa-brands fa-instagram"></i></a></h2>
+                        <h2 class="d-inline m-2"><a href=""><i class="fa-brands fa-linkedin"></i></a></h2>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-center align-items-center text-muted">
+                        <h6>Contact Us</h6>
+                        <ul class="list-unstyled px-4">
+                            <li><i class="fa-solid fa-phone"></i>&ThickSpace; 123 456 789</li>
+                            <li><i class="fa-solid fa-envelope"></i>&ThickSpace; email@example.com</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <span class="text-muted"><i class="fa-solid fa-copyright"></i>&ThickSpace; Copyright 2022</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="vendor/bootstrap-5.1.3/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+        let index = 0;
+        loadServices();
+        function loadServices() {
+            let xhttp = new XMLHttpRequest();
+            xhttp.onload = () => {
+                let parent = document.getElementById("services");
+                let services = JSON.parse(xhttp.responseText);
+                if (services.length == 0) {
+                    document.getElementById("loadMoreButton").remove();
+                    return;
+                }
+                services.forEach(service => {
+                    let element = 
+                    `
+                    <div class="row p-4">
+                        <div class="col-2">
+                            <img src="img/users/${service.image}" class="rounded-circle shadow w-100">
+                        </div>
+                        <div class="col-10">
+                            <h3 class="d-inline-block pe-4">${service.name}</h3>
+                            <button onclick="startChat(${service.id})" class="btn btn-success align-top">Chat</button>
+                            `;
+                            if (service.available) {
+                                element += `
+                                    <a href="booking?service=${service.serviceID}" class="btn btn-primary align-top ms-3">Book</a>
+                                `;
+                            }
+                            else {
+                                element += `
+                                    <button disabled class="btn btn-secondary align-top ms-3">Book</button>
+                                    <em class="text-muted ps-2">This employee has no available time slots</em>
+                                `;
+                            }
+                            element += `
+                            <p>${service.description}</p>
+                            <p>
+                                `;
+                                for (let i = 1; i <= Math.round(service.rating); i++) {
+                                    element += `<i class="fa-solid fa-star checkedstar"></i>`;
+                                }
+                                for (let i = Math.round(service.rating) + 1; i <= 5; i++) {
+                                    element += `<i class="fa-solid fa-star uncheckedstar"></i>`;
+                                }
+                                element += `
+                            </p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="categorytag">
+                                        <span class="text-muted pe-4">Tags</span>
+                                        `;
+                                        for (let i = 0; i < service.tags.length; i++) {
+                                            element += `<a href="/browse-category?q=${service.tags[i]}">${service.tags[i]}</a>`;
+                                        }
+                                        element += `
+                                    </p>
+                                </div>
+                                <div class="col-3">
+                                    <p><span class="text-muted">Location</span>
+                                        <span class="px-4">${service.location}</span>
+                                    </p>
+                                </div>
+                                <div class="col-3">
+                                    <p><span class="text-muted">Rate</span>
+                                        <span class="px-4">$${service.rate}/hr</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    `;
+                    parent.innerHTML += element;
+                });
+            }
+            let isSearch = document.getElementById("isSearch").value == "true";
+            console.log(document.getElementById("isSearch").value);
+            let query = document.getElementById("query").value;
+            if (isSearch) 
+                xhttp.open("GET", `/browse-category-services?q=${query}&index=${index}`);
+            else 
+                xhttp.open("GET", `/browse-category-services?category=${query}&index=${index}`);
+            index += 5;
+            xhttp.send();
+
+        }
+
+        function startChat(contact) {
+            let message = {
+                to: contact,
+                msgbody: ""
+            }
+            let xhttp = new XMLHttpRequest();
+            xhttp.onload = () => {
+                location.href = "/chat";
+            };
+            xhttp.open("POST", "/chat");
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(JSON.stringify(message));
+        }
+
+    </script>
+    
+</body>
+</html>
